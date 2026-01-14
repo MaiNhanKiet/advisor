@@ -1,0 +1,21 @@
+version: "3.9"
+
+services:
+  advisor-web:
+    build: .
+    container_name: advisor-web
+    ports:
+      - "3008:3000"
+    environment:
+      NODE_ENV: production
+      # Có thể override bằng biến môi trường ngoài docker-compose nếu cần
+      MONGODB_URI: mongodb://kietmn:kietdeptrai123@mongodb_container:27017/advisor?authSource=admin
+    networks:
+      - khucgiaomua_default
+    restart: unless-stopped
+
+networks:
+  khucgiaomua_default:
+    external: true
+
+
